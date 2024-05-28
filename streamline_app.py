@@ -41,7 +41,6 @@ st.write(collection.aggregate([
 ]))
 
 
-
 # refresh button
 if st.button("Refresh"):
     st.write("Refreshed!")
