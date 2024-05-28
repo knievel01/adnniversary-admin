@@ -26,25 +26,27 @@ number_of_guests = collection.aggregate([
     }
 ])
 
+st.write("Anzahl der Gäste die kommen: ")
 for answer in number_of_guests:
-    if answer["sum_val"] == "Ja":
-        st.write("Zusagen: ")
-        st.write(answer["sum_val"])
+    if answer["_id"] == "Ja":
+        st.write("Zusagen: " + answer["sum_val"])
     else:
-        st.write("Absagen:")
-        st.write(answer["sum_val"])
+        st.write("Absagen:" + answer["sum_val"])
 st.divider()    
 
+st.write("Anmeldungen:")
 
-# lade mir alle gäste in ein dataframe und sortiere nach name
-df = pd.DataFrame(list(collection.find()))
+# mach ein find() auf der collection und gib die spalten name, confirmation und guests aus
+guest_list = collection.find({}, {"name": 1, "confirmation": 1, "guests": 1})
+
+
+df = pd.DataFrame(list(guest_list))
 df = df.sort_values(by='name')
 st.write(df)
 
 
-# please sum all values with { confirmation: 'Ja' } in the the collection and display the result
-# hint: use the $sum operator
-st.write("Anzahl der Gäste die kommen: ")
+
+
 
 
 
