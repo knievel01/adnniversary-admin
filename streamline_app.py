@@ -32,7 +32,7 @@ for answer in number_of_guests:
         st.write("Zusagen: ")
         st.write(answer["sum_val"])
     else:
-        st.write("Absagen:")
+        st.write("Absagen: ")
         st.write(answer["sum_val"])
 st.divider()    
 
