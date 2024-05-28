@@ -14,12 +14,21 @@ collection = client["wedding"]["guests"]
 st.title("🎉 10 Jahre Roman und Denise 🎉")
 st.caption("So sieht's bis jetzt aus!")
 
-
+for answer in number_of_guests:
+    if answer["sum_val"] == "Ja":
+        st.write("Zusagen: ")
+        st.write(answer["sum_val"])
+    else:
+        st.write("Absagen:")
+        st.write(answer["sum_val"])
 st.divider()    
+
+
 # lade mir alle gäste in ein dataframe und sortiere nach name
 df = pd.DataFrame(list(collection.find()))
 df = df.sort_values(by='name')
 st.write(df)
+
 
 # please sum all values with { confirmation: 'Ja' } in the the collection and display the result
 # hint: use the $sum operator
@@ -36,13 +45,6 @@ number_of_guests = collection.aggregate([
     }
 ])
 
-for answer in number_of_guests:
-    if answer["sum_val"] == "Ja":
-        st.write("Zusagen: ")
-        st.write(answer["sum_val"])
-    else:
-        st.write("Absagen:")
-        st.write(answer["sum_val"])
 
 
 # refresh button
