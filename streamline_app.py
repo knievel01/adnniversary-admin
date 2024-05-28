@@ -30,10 +30,10 @@ st.write("Anzahl der Gäste die kommen: ")
 for answer in number_of_guests:
     if answer["_id"] == "Ja":
         st.write("Zusagen: ")
-        st.write(answer["sum_val"])
+        st.markdown(answer["sum_val"])
     else:
         st.write("Absagen: ")
-        st.write(answer["sum_val"])
+        st.markdown(answer["sum_val"])
 st.divider()    
 
 st.write("Anmeldungen:")
@@ -45,7 +45,7 @@ guest_list = collection.find({}, {"_id": 0, "name": 1, "confirmation": 1, "guest
 
 df = pd.DataFrame(list(guest_list))
 
-st.markdown(df)
+st.write(df)
 
 
 
