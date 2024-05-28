@@ -44,7 +44,8 @@ guest_list = collection.find({}, {"_id": 0, "name": 1, "confirmation": 1, "guest
 
 
 df = pd.DataFrame(list(guest_list))
-st.write(df)
+
+st.markdown(df)
 
 
 
