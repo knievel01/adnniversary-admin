@@ -15,16 +15,32 @@ st.title("🎉 10 Jahre Roman und Denise 🎉")
 st.caption("So sieht's bis jetzt aus!")
 
 
-# Get sum_val:{ $sum: "$guests" } from collection
-sum_val = collection.aggregate([{"$group": {"_id": None, "total": {"$sum": "$guests"}}}])
-
-st.markdown(f"Anzahl der Gäste: {sum_val}")
-
 st.divider()    
 # lade mir alle gäste in ein dataframe und sortiere nach name
 df = pd.DataFrame(list(collection.find()))
 df = df.sort_values(by='name')
 st.write(df)
+
+# please sum all values with { confirmation: 'Ja' } in the the collection and display the result
+# hint: use the $sum operator
+st.write("Anzahl der Gäste die kommen: ")
+st.write(collection.aggregate([
+    {
+        "$match": {
+            "confirmation": "Ja"
+        }
+    },
+    {
+        "$group": {
+            "_id": "$confirmation",
+            "sum_val": {
+                "$sum": "$guests"
+            }
+        }
+    }
+]))
+
+
 
 # refresh button
 if st.button("Refresh"):
