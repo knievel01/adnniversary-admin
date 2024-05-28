@@ -38,12 +38,12 @@ st.divider()
 
 st.write("Anmeldungen:")
 
-# mach ein find() ohne "_id" auf der collection und gib die spalten name, confirmation und guests aus und sortiere nach name
-guest_list = collection.find({}, {"_id": 0, "name": 1, "confirmation": 1, "guests": 1})
+# mach ein find() ohne "_id" auf der collection und gib die spalten name, confirmation und guests aus und sortiere in der pipeline nach name
+guest_list = collection.find({}, {"_id": 0, "name": 1, "confirmation": 1, "guests": 1}).sort("name")
+
 
 
 df = pd.DataFrame(list(guest_list))
-df = df.sort_values(by='name')
 st.write(df)
 
 
