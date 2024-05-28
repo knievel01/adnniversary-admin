@@ -38,8 +38,8 @@ st.divider()
 
 st.write("Anmeldungen:")
 
-# mach ein find() auf der collection und gib die spalten name, confirmation und guests aus
-guest_list = collection.find({}, {"name": 1, "confirmation": 1, "guests": 1})
+# mach ein find() ohne "_id" auf der collection und gib die spalten name, confirmation und guests aus und sortiere nach name
+guest_list = collection.find({}, {"_id": 0, "name": 1, "confirmation": 1, "guests": 1})
 
 
 df = pd.DataFrame(list(guest_list))
