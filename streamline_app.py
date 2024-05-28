@@ -24,12 +24,8 @@ st.write(df)
 # please sum all values with { confirmation: 'Ja' } in the the collection and display the result
 # hint: use the $sum operator
 st.write("Anzahl der Gäste die kommen: ")
-st.write(collection.aggregate([
-    {
-        "$match": {
-            "confirmation": "Ja"
-        }
-    },
+
+number_of_guests = collection.aggregate([
     {
         "$group": {
             "_id": "$confirmation",
@@ -38,7 +34,10 @@ st.write(collection.aggregate([
             }
         }
     }
-]))
+])
+
+for answer in number_of_guests:
+    st.write(answer["sum_val"])
 
 
 # refresh button
