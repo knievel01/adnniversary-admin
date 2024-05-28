@@ -26,7 +26,6 @@ number_of_guests = collection.aggregate([
     }
 ])
 
-st.write("Anzahl der Gäste die kommen: ")
 for answer in number_of_guests:
     if answer["_id"] == "Ja":
         st.write("Zusagen: ")
