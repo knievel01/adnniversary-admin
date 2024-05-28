@@ -37,7 +37,10 @@ number_of_guests = collection.aggregate([
 ])
 
 for answer in number_of_guests:
-    st.write(answer["sum_val"])
+    if answer["sum_val"] == "Ja":
+        st.write("Zusagen: " + answer["sum_val"])
+    else:
+        st.write("Absagen: " + answer["sum_val"])
 
 
 # refresh button
