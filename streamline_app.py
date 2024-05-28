@@ -29,9 +29,11 @@ number_of_guests = collection.aggregate([
 st.write("Anzahl der Gäste die kommen: ")
 for answer in number_of_guests:
     if answer["_id"] == "Ja":
-        st.write("Zusagen: " + answer["sum_val"])
+        st.write("Zusagen: ")
+        st.write(answer["sum_val"])
     else:
-        st.write("Absagen:" + answer["sum_val"])
+        st.write("Absagen:")
+        st.write(answer["sum_val"])
 st.divider()    
 
 st.write("Anmeldungen:")
