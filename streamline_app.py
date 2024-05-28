@@ -15,20 +15,12 @@ st.title("🎉 10 Jahre Roman und Denise 🎉")
 st.caption("So sieht's bis jetzt aus!")
 
 
-# 
-new_data = {
-            "name": name,
-            "confirmation": confirmation,
-            "guests": guests
-        }
-        collection.insert_one(new_data)
-
-
-
 # Get sum_val:{ $sum: "$guests" } from collection
 sum_val = collection.aggregate([{"$group": {"_id": None, "total": {"$sum": "$guests"}}}])
+
 st.markdown(f"Anzahl der Gäste: {sum_val}")
 
+st.divider()    
 # lade mir alle gäste in ein dataframe und sortiere nach name
 df = pd.DataFrame(list(collection.find()))
 df = df.sort_values(by='name')
