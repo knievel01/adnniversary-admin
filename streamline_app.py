@@ -14,6 +14,18 @@ collection = client["wedding"]["guests"]
 st.title("🎉 10 Jahre Roman und Denise 🎉")
 st.caption("So sieht's bis jetzt aus!")
 
+
+number_of_guests = collection.aggregate([
+    {
+        "$group": {
+            "_id": "$confirmation",
+            "sum_val": {
+                "$sum": "$guests"
+            }
+        }
+    }
+])
+
 for answer in number_of_guests:
     if answer["sum_val"] == "Ja":
         st.write("Zusagen: ")
@@ -34,16 +46,6 @@ st.write(df)
 # hint: use the $sum operator
 st.write("Anzahl der Gäste die kommen: ")
 
-number_of_guests = collection.aggregate([
-    {
-        "$group": {
-            "_id": "$confirmation",
-            "sum_val": {
-                "$sum": "$guests"
-            }
-        }
-    }
-])
 
 
 
